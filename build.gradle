@@ -1,0 +1,86 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id "com.google.protobuf" version "0.8.17"
+}
+
+ext {
+    mapstructVersion = '1.5.5.Final'
+    citrusVersion = '4.1.0'
+    set('testcontainers.version', "1.19.3")
+}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.0.4")
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:r2dbc-postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'io.projectreactor:reactor-core:3.5.5'
+    implementation 'net.devh:grpc-server-spring-boot-starter:2.14.0.RELEASE'
+    implementation 'com.salesforce.servicelibs:reactor-grpc-stub:1.2.4'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.flywaydb:flyway-core'
+    implementation "org.mapstruct:mapstruct:$mapstructVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.testcontainers:r2dbc'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:3.2.4"
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.22.3'
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.54.0'
+        }
+        reactorGrpc {
+            artifact = 'com.salesforce.servicelibs:reactor-grpc:1.2.4'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+            reactorGrpc {}
+        }
+    }
+}
+sourceSets{
+    main{
+        proto{
+            srcDirs 'src/main/protobuf'
+        }
+        java{
+            srcDirs 'build/generated/source/proto/main/reactorGrpc'
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'}
+
+    }
+}
+tasks.named('test') {
+    useJUnitPlatform()
+}
