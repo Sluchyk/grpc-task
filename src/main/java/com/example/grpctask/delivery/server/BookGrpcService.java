@@ -52,7 +52,7 @@ public class BookGrpcService extends ReactorBookServiceGrpc.BookServiceImplBase 
                                 .build()));
     }
     @Override
-    public Flux<Book> getAllBooksWithPagination(Mono<Empty> request) {
+    public Flux<Book> getAllBooks(Mono<Empty> request) {
         return request.flatMapMany(book-> service.getAllBooks())
                 .map(bookMapper::mapBookResponseToBook);
     }

@@ -38,8 +38,9 @@ public class BookRestController {
                 .map(ResponseEntity::ok);
     }
     @GetMapping
-    public  Flux<BookResponse> getAllBooksWithPagination(){
-        return service.getAllBooks();
+    public  Flux<ResponseEntity<BookResponse>> getAllBooks(){
+        return service.getAllBooks()
+                .map(ResponseEntity::ok);
     }
     @PutMapping("/{id}")
     public Mono<ResponseEntity<BookResponse>> updateBook(@PathVariable String id, @RequestBody @Valid BookRequest request){
