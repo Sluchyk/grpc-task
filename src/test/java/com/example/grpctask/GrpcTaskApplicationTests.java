@@ -7,8 +7,6 @@ import com.example.grpctask.repository.BookEntity;
 import com.example.grpctask.repository.BookRepository;
 import com.example.grpctask.services.BookServiceImpl;
 import java.util.UUID;
-import static org.junit.Assert.assertEquals;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,0 +1,4 @@
+citrus:
+  spring:
+    java:
+      config: com.example.grpctask.TestConfig
