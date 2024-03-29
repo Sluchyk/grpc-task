@@ -18,7 +18,7 @@ service BookService {
   rpc getBookById(ReadBookRequest) returns (Book);
   rpc updateBook(UpdateBookRequest) returns (Book);
   rpc deleteBook(DeleteBookRequest) returns (DeleteBookResponse);
-  rpc getAllBooksWithPagination(google.protobuf.Empty) returns ( stream Book);
+  rpc getAllBooks(google.protobuf.Empty) returns ( stream Book);
 }
 
 

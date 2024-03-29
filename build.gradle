@@ -43,6 +43,16 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:r2dbc'
+    compileOnly 'org.citrusframework:citrus-spring:4.2.0'
+    implementation 'org.citrusframework:citrus-http:4.2.0'
+    implementation 'org.citrusframework:citrus-java-dsl:4.0.0-M1'
+    implementation 'org.citrusframework:citrus-core:4.2.0'
+    implementation 'org.citrusframework:citrus-junit5:4.2.0'
+
+
+
+
+
 }
 dependencyManagement {
     imports {
