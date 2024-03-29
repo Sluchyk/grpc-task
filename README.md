@@ -15,25 +15,19 @@ Now, let's proceed with the setup instructions:
     ./gradlew build -x test
     ```
 
-3. **Start Postgresql Container**:
-   If `./gradlew build` command was successful, start a Postgresql container with the following configuration:
-    - Database Name: `testdb`
-    - Username: `test`
-    - Password: `test`
-
-4. **Run Docker Compose**:
+3. **Run Docker Compose**:
    Execute the following command to run Docker Compose, which will start the necessary containers:
     ```bash
     docker-compose up
     ```
 
-5. **Access Swagger Documentation**:
+4. **Access Swagger Documentation**:
    Once the containers are up and running, you can access the Swagger documentation for API usage by opening the following link in your browser:
     ```
     http://localhost:8080/webjars/swagger-ui/index.html
     ```
 
-6. **Interacting with the Project**:
+5. **Interacting with the Project**:
    Utilize the provided documentation in Swagger UI to make requests and interact with the project as needed.
 
 ### Notes
